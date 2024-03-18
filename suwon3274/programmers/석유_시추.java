@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Solution {
+class Solution {
 
     public int solution(int[][] land) {
         int answer = 0;

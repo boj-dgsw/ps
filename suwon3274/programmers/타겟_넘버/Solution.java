@@ -3,7 +3,7 @@ package 타겟_넘버;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class Solution {
+public class Solution {
 
     public int solution(int[] numbers, int target) {
         int answer = 0;

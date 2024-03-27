@@ -1,3 +1,5 @@
+package 게임을_만든_동준이;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

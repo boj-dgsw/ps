@@ -1,4 +1,4 @@
-package baekjoon;
+package 안전_영역;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,3 +1,5 @@
+package 삼각형_만들기;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

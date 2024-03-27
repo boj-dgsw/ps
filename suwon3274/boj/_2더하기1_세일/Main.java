@@ -1,3 +1,5 @@
+package _2더하기1_세일;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

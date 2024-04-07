@@ -1,20 +1,19 @@
-#include <iostream>
+#include <cstdio>
 #include <queue>
+#define MAX 10'001
 
 using namespace std;
-using ll = long long;
-const int MAX = 10'001;
 
-int dijkstra(
+short dijkstra(
     const vector<vector<bool>>& graph,
-    const pair<int, int>& start,
-    const pair<int, int>& end
+    const pair<short, short>& start,
+    const pair<short, short>& end
 );
 
 struct Edge
 {
-    pair<int, int> dest;
-    ll weight;
+    pair<short, short> dest;
+    short weight;
 };
 
 struct cmp
@@ -27,42 +26,37 @@ struct cmp
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr); cout.tie(nullptr);
-
-    int m, n;
-    cin >> m >> n;
+    short m, n;
+    scanf("%hd%hd",&m,&n);
 
     vector<vector<bool>> graph;
     graph.resize(n);
-    for (int i = 0; i < n; i++)
+    for (short i = 0; i < n; i++)
     {
         graph[i].resize(m);
 
-        string tmp;
-        cin >> tmp;
-
-        for (int j = 0; j < m; j++)
+        for (short j = 0; j < m; j++)
         {
-            graph[i][j] = tmp[j] - '0';
+            short tmp; scanf("%1hd", &tmp);
+            graph[i][j]=(bool)tmp;
         }
     }
 
-    cout << dijkstra(graph, {0, 0}, {n - 1, m - 1});
+    printf("%hd", dijkstra(graph, {0, 0}, {n - 1, m - 1}));
 }
 
-int dijkstra(
+short dijkstra(
     const vector<vector<bool>>& graph,
-    const pair<int, int>& start,
-    const pair<int, int>& end
+    const pair<short, short>& start,
+    const pair<short, short>& end
 )
 {
-    vector<vector<int>> distArr;
+    vector<vector<short>> distArr;
     distArr.resize(end.first + 1);
-    for (int i = 0; i <= end.first; i++)
+    for (short i = 0; i <= end.first; i++)
     {
         distArr[i].resize(end.second + 1);
-        for (int j = 0; j <= end.second; j++)
+        for (short j = 0; j <= end.second; j++)
         {
             distArr[i][j] = MAX;
         }
@@ -74,15 +68,15 @@ int dijkstra(
 
     while (!q.empty())
     {
-        Edge currEdge = q.top(); q.pop();
-        int currI = currEdge.dest.first;
-        int currJ = currEdge.dest.second;
+        const Edge currEdge = q.top(); q.pop();
+        const short& currI = currEdge.dest.first;
+        const short& currJ = currEdge.dest.second;
 
-        pair<int, int> coords[] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-        for (pair<int, int> coord : coords)
+        pair<short, short> coords[] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+        for (const pair<short, short>& coord : coords)
         {
-            int newI = currI + coord.first;
-            int newJ = currJ + coord.second;
+            short newI = currI + coord.first;
+            short newJ = currJ + coord.second;
 
             if (newI < 0 || newJ < 0 || newI > end.first || newJ > end.second)
                 continue;

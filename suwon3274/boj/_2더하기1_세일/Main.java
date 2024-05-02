@@ -29,3 +29,4 @@ public class Main {
     }
 
 }
+법

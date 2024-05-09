@@ -1,5 +1,9 @@
 // Greedy
 
+// 배열 내 요소(점수)들을 1씩 빼서 오름차순으로 만들어야 함.
+// 예로 들어 4를 빼면 4번으로 간주한다.
+// 점수 빼는 횟수는 최소로 해야 함.
+
 #include <iostream>
 #include <vector>
 #define FAST_IO ios_base::sync_with_stdio(false); \

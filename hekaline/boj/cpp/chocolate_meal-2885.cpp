@@ -1,3 +1,5 @@
+// Greedy
+// Silver II
 #include <iostream>
 #include <bits/stdc++.h>
 

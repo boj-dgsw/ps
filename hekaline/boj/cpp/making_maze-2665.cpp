@@ -1,5 +1,7 @@
 // Dijkstra
+// 0-1 BFS
 // Gold IV
+// 0을 1, 1을 0으로 치환해서 왼쪽 위에서 오른쪽 아래까지의 거리 구하기
 
 #include <iostream>
 #include <bits/stdc++.h>

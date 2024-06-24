@@ -1,6 +1,3 @@
-// Binary Search
-// Silver II
-
 #include <iostream>
 #include <bits/stdc++.h>
 #define FAST_IO ios_base::sync_with_stdio(false); cin.tie(nullptr);
@@ -16,8 +13,6 @@ int getMaxUpperLimit();
 int sum(const vector<int>& arr)
 { return accumulate(arr.begin(), arr.end(), 0); }
 
-int max(const vector<int>& arr)
-{ return *max_element(arr.begin(), arr.end()); }
 
 int main()
 {
@@ -32,11 +27,11 @@ int getMaxUpperLimit()
 	int maxUpperLimit = -1;
 	
 	// 예산 요청의 총합이 국가 예산보다 작거나 같다면
-	if (sum(arr) <= m) return max(arr);
+	if (sum(arr) <= m) return arr[n - 1];
 	
 	// else
 	int left = 0;
-	int right = max(arr);
+	int right = arr[n - 1];
 	
 	while (left <= right)
 	{

@@ -46,9 +46,5 @@ int main()
 			st.push(s[i]);
 	}
 	
-	while (!st.empty())
-	{
-		cout << st.top();
-		st.pop();
-	}
+	emptyStack(st);
 }

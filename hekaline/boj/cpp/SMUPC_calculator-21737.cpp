@@ -1,22 +1,25 @@
 #include <iostream>
 #include <bits/stdc++.h>
+#include <limits.h>
+
 #define OUT
 #define IN const
 
 using namespace std;
+using ll = long long;
 
 constexpr char SUBTRACT = 'S';
 constexpr char MULTIPLY = 'M';
 constexpr char DIVIDE = 'U';
 constexpr char PLUS = 'P';
 constexpr char CONSEQUENCE = 'C';
-const string NO_MORE_NUMBER = "NULL";
+constexpr ll NO_MORE_NUMBER = LLONG_MAX;
 
 [[nodiscard]]
 bool isNumber(char c) { return '0' <= c && c <= '9'; }
 
 [[nodiscard]]
-string getNumberFrom(OUT int &startFrom, IN string &s);
+ll getNumFrom(OUT int &startFrom, IN string &s);
 
 int main()
 {
@@ -24,56 +27,52 @@ int main()
     bool printed = false;
     cin >> n;
 
-    vector<string> stack;
     string s;
     cin >> s;
 
+    ll ans = 0;
     int len = s.length();
+
     for (int i = 0; i < len; i++)
     {
-        char currC = s[i];
-        if (isNumber(currC))
+        if (i == 0)
         {
-            stack.push_back(getNumberFrom(i, s));
+            ans = getNumFrom(i, s);
+            continue;
         }
-        else
+
+        char currC = s[i];
+        if (currC == CONSEQUENCE)
         {
-            if (currC == CONSEQUENCE)
-            {
-                cout << stack.back() << ' ';
-                printed = true;
-                continue;
-            }
+            cout << ans << ' ';
+            printed = true;
+            continue;
+        }
 
-            string firstStr = stack.back(); stack.pop_back();
-            ++i;
-            string secondStr = getNumberFrom(i, s);
-            if (secondStr == NO_MORE_NUMBER)
-            {
+        ++i; // 알파벳 건너뛰기
+        ll secondNum = getNumFrom(i, s);
+        if (secondNum == NO_MORE_NUMBER)
+        {
+            break;
+        }
+
+        switch (currC)
+        {
+            case SUBTRACT:
+                ans -= secondNum;
                 break;
-            }
-
-            int firstNum = stoi(firstStr);
-            int secondNum = stoi(secondStr);
-
-            switch (currC)
-            {
-                case SUBTRACT:
-                    stack.push_back(to_string(firstNum - secondNum));
-                    break;
-                case MULTIPLY:
-                    stack.push_back(to_string(firstNum * secondNum));
-                    break;
-                case DIVIDE:
-                    stack.push_back(to_string(firstNum / secondNum));
-                    break;
-                case PLUS:
-                    stack.push_back(to_string(firstNum + secondNum));
-                    break;
-                default:
-                    break;
-            }
-        } // end of else
+            case MULTIPLY:
+                ans *= secondNum;
+                break;
+            case DIVIDE:
+                ans /= secondNum;
+                break;
+            case PLUS:
+                ans += secondNum;
+                break;
+            default:
+                break;
+        }
 
     } // end of for
 
@@ -83,39 +82,31 @@ int main()
     }
 }
 
-string getNumberFrom(OUT int &startFrom, IN string& s)
+ll getNumFrom(OUT int &startFrom, IN string& s)
 {
     int len = s.length();
-
-    while (startFrom < len)
+    if (startFrom >= len)
     {
-        if (isNumber(s[startFrom]))
-            break;
-
-        startFrom++;
+        return NO_MORE_NUMBER;
     }
 
-    string temp(1, s[startFrom]);
+    ll temp = s[startFrom] - '0';
 
-    while (startFrom < len - 1)
+    while (startFrom + 1 < len)
     {
         if (!isNumber(s[startFrom + 1]))
         {
             break;
         }
 
-        if (!temp.empty() || s[startFrom + 1] != '0')
+        if (temp != 0 || s[startFrom + 1] != '0')
         {
-            temp += s[++startFrom];
+            temp *= 10;
+            temp += s[startFrom + 1] - '0';
         }
+
+        startFrom++;
     }
 
-    try
-    {
-        temp = to_string(stoi(temp)); // stoi로 0 제거 후 스택에 넣기
-    } catch (exception& e)
-    {
-        return NO_MORE_NUMBER;
-    }
     return temp;
 }

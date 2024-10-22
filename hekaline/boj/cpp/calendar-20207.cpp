@@ -1,3 +1,7 @@
+// implementation
+// greedy algorithm
+// Gold V
+
 #include <bits/stdc++.h>
 #define FAST_IO \
     ios_base::sync_with_stdio(false); \

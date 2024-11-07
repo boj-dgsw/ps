@@ -1,6 +1,6 @@
 // math
 // number theory
-// euclidean
+// euclidean algorithm
 // Silver I
 
 #include <bits/stdc++.h>

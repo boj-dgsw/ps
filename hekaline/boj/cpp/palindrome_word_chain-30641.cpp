@@ -20,7 +20,7 @@ int main()
     ll l, u;
     std::cin >> l >> u;
 
-    bool hoyoung = l == 2 || (l == 1 && u == 1 && l < 3);
+    bool hoyoung = l == 2 || u == 1;
 
     ll sum = 0, plus = 1;
 
@@ -40,3 +40,4 @@ int main()
     std::cout << (hoyoung ? "H" : "A") << '\n';
     std::cout << sum;
 }
+
